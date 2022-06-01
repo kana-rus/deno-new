@@ -90,7 +90,7 @@ fn main() {
     let vscode_config_dir_path = format!("{}/.vscode", &target_dir_path);
     let src_dir_path = format!("{}/src", &target_dir_path);
 
-    let vscode_config_file_path = format!("{}//settings.json", &vscode_config_dir_path);
+    let vscode_config_file_path = format!("{}/settings.json", &vscode_config_dir_path);
     let main_src_file_path = format!("{}/main.ts", &src_dir_path);
     let deno_config_file_path = format!("{}/deno.json", &target_dir_path);
     let import_map_config_file_path = format!("{}/import_map.json", &target_dir_path);
