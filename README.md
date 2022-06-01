@@ -1,4 +1,4 @@
-# Usage
+# Usage (plan)
 
 ```
 deno-setup [options] dirname
@@ -12,6 +12,6 @@ This setups deno project directory with
 
 <br>
 
-# Options
+# Options (plan)
 - --editor, -e ... explicitly specifying the edotor (default: code)
 - 
