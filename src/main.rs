@@ -30,45 +30,45 @@ fn main() {
     */
 
     const VSCODE_SETTINGS_DEFAULT: &'static str =
-    "{
-        \"deno.enable\": true,
-        \"deno.lint\": true,
-        \"deno.unstable\": true,
-        \"deno.importMap\": \"./import_map.json\"
-    }";
+"{
+    \"deno.enable\": true,
+    \"deno.lint\": true,
+    \"deno.unstable\": true,
+    \"deno.importMap\": \"./import_map.json\"
+}";
     const DENO_SETTINGS_DEFAULT: &'static str =
-    "{
-        \"compilerOptions\": {
-            \"allowJs\": false,
-            \"strict\": true
-        },
-        \"lint\": {
-            \"files\": {
-                \"include\": [\"src/\"]
-            }
-        },
-        \"fmt\": {
-            \"files\": {
-                \"include\": [\"src/\"]
-            },
-            \"options\": {
-                \"indentWidth\": 4,
-                \"singleQuote\": false,
-                \"useTabs\": false,
-                \"proseWrap\": \"always\"
-            }
-        },
-        \"importMap\": \"import_map.json\",
-        \"tasks\": {
-            \"dev\": \"deno run --alow-net=localhost:8080\"
+"{
+    \"compilerOptions\": {
+        \"allowJs\": false,
+        \"strict\": true
+    },
+    \"lint\": {
+        \"files\": {
+            \"include\": [\"src/\"]
         }
-    }";
+    },
+    \"fmt\": {
+        \"files\": {
+            \"include\": [\"src/\"]
+        },
+        \"options\": {
+            \"indentWidth\": 4,
+            \"singleQuote\": false,
+            \"useTabs\": false,
+            \"proseWrap\": \"always\"
+        }
+    },
+    \"importMap\": \"import_map.json\",
+    \"tasks\": {
+        \"dev\": \"deno run --alow-net=localhost:8080\"
+    }
+}";
     const IMPORT_MAP_SETTING_DEFAULT: &'static str =
-    "{
-        \"imports\": {
-            \"std/\": \"https://deno.land/std@0.141.0/\"
-        }
-    }";
+"{
+    \"imports\": {
+        \"std/\": \"https://deno.land/std@0.141.0/\"
+    }
+}";
 
 
     // とりあえず option なしで実装する
@@ -87,14 +87,22 @@ fn main() {
         arg.unwrap()
     };
 
-    let vscode_config_file_path = format!("{}/.vscode/settings.json", &target_dir_path);
+    let vscode_config_dir_path = format!("{}/.vscode", &target_dir_path);
+    let src_dir_path = format!("{}/src", &target_dir_path);
+
+    let vscode_config_file_path = format!("{}//settings.json", &vscode_config_dir_path);
+    let main_src_file_path = format!("{}/main.ts", &src_dir_path);
     let deno_config_file_path = format!("{}/deno.json", &target_dir_path);
     let import_map_config_file_path = format!("{}/import_map.json", &target_dir_path);
-    let main_src_file_path = format!("{}/src/main.ts", &target_dir_path);
-
+    
     mkdir(target_dir_path);
+
+    mkdir(vscode_config_dir_path);
     echo(VSCODE_SETTINGS_DEFAULT, vscode_config_file_path);
+
+    mkdir(src_dir_path);
+    echo("", main_src_file_path);
+
     echo(DENO_SETTINGS_DEFAULT, deno_config_file_path);
     echo(IMPORT_MAP_SETTING_DEFAULT, import_map_config_file_path);
-    echo("", main_src_file_path);
 }
