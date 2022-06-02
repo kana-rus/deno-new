@@ -71,7 +71,7 @@ fn main() {
 }";
 
 
-    // とりあえず option なしで実装する
+    // とりあえず options なしで実装する
     // $ deno-new dirname
     let mut args = args();
     let _command_executing_path = args.next();
@@ -81,7 +81,7 @@ fn main() {
     let target_dir_path = {
         let arg = args.next();
         if arg.is_none() {
-            println!("missong target dirname");
+            println!("missing target dirname");
             return;
         }
         arg.unwrap()
